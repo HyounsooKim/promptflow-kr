@@ -1,5 +1,5 @@
-promptflow==1.9.0
-promptflow-tools==1.9.0
+promptflow[azure]==1.9.0
+promptflow-tools
 promptflow-azure==1.9.0
 promptflow-vectordb==0.2.3
 azure-search-documents==11.4.0
