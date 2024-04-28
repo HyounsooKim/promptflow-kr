@@ -1,4 +1,4 @@
-promptflow[azure]>=1.7.0
+promptflow[azure]==1.8.0
 promptflow-tools
 python-dotenv
 keyrings-alt
