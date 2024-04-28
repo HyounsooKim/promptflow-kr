@@ -9,7 +9,7 @@
 		"terminal.integrated.shell.linux": "/bin/bash"
 	},
 	
-	"postCreateCommand": "pip uninstall -y promptflow promptflow-core promptflow-devkit promptflow-azure && pip3 install --user -r requirements.txt",
+	"postCreateCommand": "pip3 install --user -r requirements.txt",
 	
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
