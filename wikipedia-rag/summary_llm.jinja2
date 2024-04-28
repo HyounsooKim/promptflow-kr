@@ -1,9 +1,7 @@
 # system:
-You are a chatbot having a conversation with a human.
-Given the following extracted parts of a long document and a question, create a final answer with references ("SOURCES").
-If you don't know the answer, just say that you don't know. Don't try to make up an answer.
-ALWAYS return a "SOURCES" part in your answer.
- 
+You should generate an answer based on the "### Grouding data" message provided below, rather than using any knowledge you have about the user's question. If there is no "### Grouding data" message, "I could not find a context for the answer." You have to answer.
+
+### Grouding data
 ```
 {% for item in search_results %}
 {{item}} 

@@ -4,7 +4,7 @@ environment:
 inputs:
   question:
     type: string
-    default: 4월에 대해서 간략하게 요약해줘.
+    default: 4월과 8월을 비교하고 표를 그려줘.
 outputs:
   output:
     type: string
@@ -16,27 +16,9 @@ nodes:
     type: package
     tool: promptflow.tools.embedding.embedding
   inputs:
-    connection: aoai_sweden
+    connection: open_ai_connection
     deployment_name: text-embedding-ada-002
     input: ${inputs.question}
-- name: wikipedia_ai_search
-  type: python
-  source:
-    type: package
-    tool: promptflow_vectordb.tool.vector_db_lookup.VectorDBLookup.search
-  inputs:
-    connection: pt-ai-search
-    index_name: wikipedia-index
-    text_field: ""
-    vector_field: content_vector
-    vector: ${Embedding_Q.output}
-- name: post_processing
-  type: python
-  source:
-    type: code
-    path: post_processing.py
-  inputs:
-    search_result: ${wikipedia_ai_search.output}
 - name: summary_llm
   type: llm
   source:
@@ -47,6 +29,13 @@ nodes:
     response_format:
       type: text
     question: ${inputs.question}
-    search_results: ${post_processing.output}
-  connection: aoai_sweden
+    search_results: ${wikipedia_retrieval.output}
+  connection: open_ai_connection
   api: chat
+- name: wikipedia_retrieval
+  type: python
+  source:
+    type: code
+    path: wikipedia_retrieval.py
+  inputs:
+    embedding: ${Embedding_Q.output}
